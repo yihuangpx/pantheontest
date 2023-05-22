@@ -59,6 +59,8 @@ class Request implements
 
     const DEBUG_RESPONSE_STRING = "#### RESPONSE ####\nHeaders: {headers}\nData: {data}\nStatus Code: {status_code}";
 
+    const SENSITIVE_COMMANDS = ["auth:login", "lock:enable",];
+
     protected ClientInterface $client;
 
     /**
@@ -374,6 +376,8 @@ class Request implements
         return [
             'User-Agent' => $this->userAgent(),
             'Accept' => 'application/json',
+            'X-Pantheon-Trace-Id' => $GLOBALS['PANTHEON_TRACE_ID'],
+            'X-Pantheon-Terminus-Command' => $this->terminusCommand(),
         ];
     }
 
@@ -391,6 +395,22 @@ class Request implements
             $config->get('php_version'),
             $config->get('script')
         );
+    }
+
+    /**
+     * Gives the terminus command.
+     *
+     * @return string
+     */
+    private function terminusCommand()
+    {
+        $argv = $GLOBALS['argv'];
+        $command = $argv[1];
+        if (in_array($command, self::SENSITIVE_COMMANDS)) {
+           return $command;
+        } else {
+            return implode(" ", array_slice($argv, 1));
+        }
     }
 
     /**
