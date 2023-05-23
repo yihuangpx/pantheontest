@@ -269,6 +269,7 @@ EOD;
         $container->add(\Pantheon\Terminus\Collections\OrganizationSiteMemberships::class);
         $container->add(\Pantheon\Terminus\Collections\OrganizationUpstreams::class);
         $container->add(\Pantheon\Terminus\Collections\OrganizationUserMemberships::class);
+        $container->add(\Pantheon\Terminus\Collections\Organizations::class);
         $container->add(\Pantheon\Terminus\Collections\PaymentMethods::class);
         $container->add(\Pantheon\Terminus\Collections\Plans::class);
         $container->add(\Pantheon\Terminus\Collections\SSHKeys::class);
@@ -293,7 +294,6 @@ EOD;
     {
         // List of all hooks and commands. Update via 'composer update-class-lists'
         $this->commands = [
-            'Consolidation\\Filter\\Hooks\\FilterHooks',
             'Pantheon\\Terminus\\Hooks\\Authorizer',
             'Pantheon\\Terminus\\Hooks\\RoleValidator',
             'Pantheon\\Terminus\\Hooks\\SiteEnvLookup',
@@ -345,6 +345,7 @@ EOD;
             'Pantheon\\Terminus\\Commands\\Import\\SiteCommand',
             'Pantheon\\Terminus\\Commands\\Local\\CloneCommand',
             'Pantheon\\Terminus\\Commands\\Local\\CommitAndPushCommand',
+            'Pantheon\\Terminus\\Commands\\Local\\DockerizeCommand',
             'Pantheon\\Terminus\\Commands\\Local\\GetLiveDBCommand',
             'Pantheon\\Terminus\\Commands\\Local\\GetLiveFilesCommand',
             'Pantheon\\Terminus\\Commands\\Lock\\DisableCommand',
@@ -361,7 +362,9 @@ EOD;
             'Pantheon\\Terminus\\Commands\\NewRelic\\DisableCommand',
             'Pantheon\\Terminus\\Commands\\NewRelic\\EnableCommand',
             'Pantheon\\Terminus\\Commands\\NewRelic\\InfoCommand',
+            'Pantheon\\Terminus\\Commands\\Org\\InfoCommand',
             'Pantheon\\Terminus\\Commands\\Org\\ListCommand',
+            'Pantheon\\Terminus\\Commands\\Org\\OrgCommand',
             'Pantheon\\Terminus\\Commands\\Org\\People\\AddCommand',
             'Pantheon\\Terminus\\Commands\\Org\\People\\ListCommand',
             'Pantheon\\Terminus\\Commands\\Org\\People\\RemoveCommand',
@@ -391,6 +394,7 @@ EOD;
             'Pantheon\\Terminus\\Commands\\Self\\Plugin\\CreateCommand',
             'Pantheon\\Terminus\\Commands\\Self\\Plugin\\InstallCommand',
             'Pantheon\\Terminus\\Commands\\Self\\Plugin\\ListCommand',
+            'Pantheon\\Terminus\\Commands\\Self\\Plugin\\PluginBaseCommand',
             'Pantheon\\Terminus\\Commands\\Self\\Plugin\\ReloadCommand',
             'Pantheon\\Terminus\\Commands\\Self\\Plugin\\SearchCommand',
             'Pantheon\\Terminus\\Commands\\Self\\Plugin\\UninstallCommand',
