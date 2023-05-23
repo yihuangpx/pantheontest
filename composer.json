@@ -39,6 +39,7 @@
     "ext-pcov": "*",
     "behat/behat": "^3.2.2",
     "erusev/parsedown": "^1.7",
+    "friendsofphp/php-cs-fixer": "^3.17",
     "pcov/clobber": "^2.0",
     "php-coveralls/php-coveralls": "^2.4",
     "php-vcr/php-vcr": "~1.5.2",
@@ -151,6 +152,10 @@
     ],
     "version-bump": [
       "bumpversion --no-commit --no-tag minor"
+    ],
+    "php-cs-fixer": [
+      "vendor/bin/php-cs-fixer fix ./src --rules=@PSR12",
+      "vendor/bin/php-cs-fixer fix ./tests/Functional --rules=@PSR12"
     ]
   },
   "config": {
